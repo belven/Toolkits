@@ -1,0 +1,4 @@
+name: BelvensToolkits
+main: belven.toolkits.ToolkitManager
+version: 1
+
