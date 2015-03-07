@@ -6,23 +6,20 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import belven.toolkits.testimplementations.CloseButton;
-import belven.toolkits.testimplementations.OpenButton;
-
 public abstract class Slot {
 	private int position = 0;
 	private ItemStack item;
-	private String lore = "";
+	private String name = "";
 
-	public Slot(int position, ItemStack item, String lore) {
+	public Slot(int position, ItemStack item, String name) {
 		this.setPosition(position);
 		this.setItem(item);
-		this.setLore(lore);
+		this.setName(name);
 
-		SetItemLore(lore, item);
-		ItemMeta itemMeta = item.getItemMeta();
-		itemMeta.setDisplayName("Button");
-		item.setItemMeta(itemMeta);
+		SetItemLore(name, item);
+		// ItemMeta itemMeta = item.getItemMeta();
+		// itemMeta.setDisplayName("Button");
+		// item.setItemMeta(itemMeta);
 		// Bukkit.getServer().getLogger().info("Slot Created");
 	}
 
@@ -38,14 +35,6 @@ public abstract class Slot {
 
 	public void remove() {
 
-	}
-
-	public Slot closeButton(int pos, ItemStack item, Toolkit e) {
-		return new CloseButton(e, pos, item, "");
-	}
-
-	public Slot openButton(int pos, ItemStack item, Toolkit e) {
-		return new OpenButton(e, pos, item, "");
 	}
 
 	public int getPosition() {
@@ -64,12 +53,12 @@ public abstract class Slot {
 		this.item = item;
 	}
 
-	public String getLore() {
-		return lore;
+	public String getName() {
+		return name;
 	}
 
-	public void setLore(String lore) {
-		this.lore = lore;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 }

@@ -31,7 +31,7 @@ public class PlayerListener implements Listener {
 		Toolkit t = plugin.getToolkit(event.getPlayer());
 
 		if (t != null) {
-			t.closeToolkit();
+			t.close();
 		}
 	}
 

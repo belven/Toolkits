@@ -28,16 +28,19 @@ public abstract class Toolbar extends SlotContainer {
 		toolkit.setToolbar(this);
 	}
 
-	public void openToolbar() {
+	@Override
+	public void open() {
 		for (Slot s : getSlots()) {
 			getToolkit().getPlayerInventory().setItem(s.getPosition(), s.getItem());
 		}
+		setOpen(true);
 	}
 
-	public void closeToolbar() {
+	@Override
+	public void close() {
 		for (Slot s : getSlots()) {
 			getToolkit().getPlayerInventory().setItem(s.getPosition(), new ItemStack(Material.AIR));
 		}
-
+		setOpen(false);
 	}
 }

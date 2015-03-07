@@ -13,7 +13,7 @@ public class TestMessageSlot extends Slot {
 
 	@Override
 	public void pressed(Player p) {
-		p.sendMessage("You pressed the button " + getLore());
+		p.sendMessage("You pressed the button " + getName());
 		// Bukkit.getServer().getLogger().info("OB pressed");
 	}
 

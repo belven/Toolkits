@@ -6,7 +6,7 @@ import java.util.List;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
-public abstract class Menu {
+public abstract class Menu extends Closeable {
 	private List<Page> pages = new ArrayList<>();
 	private Toolkit toolkit;
 	private int currentIndex = 0;
@@ -47,12 +47,16 @@ public abstract class Menu {
 		this.currentIndex = currentIndex;
 	}
 
-	public void openMenu() {
+	@Override
+	public void open() {
 		openPage(currentIndex);
+		setOpen(true);
 	}
 
-	public void closeMenu() {
-		pages.get(currentIndex).closePage();
+	@Override
+	public void close() {
+		pages.get(currentIndex).close();
+		setOpen(false);
 	}
 
 	public void addPage(Page newPage) {
@@ -78,8 +82,8 @@ public abstract class Menu {
 			index = 0;
 		}
 
-		pages.get(currentIndex).closePage();
-		pages.get(index).openPage();
+		pages.get(currentIndex).close();
+		pages.get(index).open();
 		currentIndex = index;
 	}
 

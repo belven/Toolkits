@@ -7,8 +7,8 @@ import java.util.List;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
-import belven.toolkits.testimplementations.NextPage;
-import belven.toolkits.testimplementations.PreviousPage;
+import belven.toolkits.buttons.NextPage;
+import belven.toolkits.buttons.PreviousPage;
 
 public abstract class Page extends SlotContainer {
 	private Toolkit toolkit;
@@ -33,15 +33,19 @@ public abstract class Page extends SlotContainer {
 		this(owner, new ArrayList<Slot>());
 	}
 
-	public void openPage() {
+	@Override
+	public void open() {
 		for (Slot s : getSlots()) {
 			getToolkit().getPlayerInventory().setItem(s.getPosition(), s.getItem());
 		}
+		setOpen(true);
 	}
 
-	public void closePage() {
+	@Override
+	public void close() {
 		for (Slot s : getSlots()) {
 			getToolkit().getPlayerInventory().setItem(s.getPosition(), new ItemStack(Material.AIR));
 		}
+		setOpen(false);
 	}
 }

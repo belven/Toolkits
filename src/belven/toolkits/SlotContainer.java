@@ -6,7 +6,7 @@ import java.util.List;
 
 import org.bukkit.inventory.ItemStack;
 
-public abstract class SlotContainer {
+public abstract class SlotContainer extends Closeable {
 	private List<Slot> slots = new ArrayList<Slot>();
 	public List<Integer> vailSlots = new ArrayList<Integer>();
 
@@ -119,7 +119,7 @@ public abstract class SlotContainer {
 
 	public Slot getSlot(String lore) {
 		for (Slot es : slots) {
-			if (es.getLore().equals(lore)) {
+			if (es.getName().equals(lore)) {
 				return es;
 			}
 		}

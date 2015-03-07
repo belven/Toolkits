@@ -9,10 +9,10 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 
-import belven.toolkits.testimplementations.CloseButton;
-import belven.toolkits.testimplementations.OpenButton;
+import belven.toolkits.buttons.CloseButton;
+import belven.toolkits.buttons.OpenButton;
 
-public abstract class Toolkit {
+public abstract class Toolkit extends Closeable {
 	private Menu currentMenu;
 	private Toolbar currentToolbar;
 	private String name = "";
@@ -20,6 +20,14 @@ public abstract class Toolkit {
 	private PlayerInventory oldPlayerInventory;
 	private OpenButton ob;
 	private CloseButton cb;
+
+	public Menu getMenu() {
+		return currentMenu;
+	}
+
+	public void setMenu(Menu currentMenu) {
+		this.currentMenu = currentMenu;
+	}
 
 	public OpenButton getOpenButton() {
 		return ob;
@@ -93,9 +101,23 @@ public abstract class Toolkit {
 		this.oldPlayerInventory = oldPlayerInventory;
 	}
 
-	public abstract void openToolkit();
+	@Override
+	public void open() {
+		getPlayerInventory().setItem(getOpenButton().getPosition(), new ItemStack(Material.AIR));
+		getToolbar().open();
+		getMenu().open();
+		getPlayerInventory().setItem(getCloseButton().getPosition(), getCloseButton().getItem());
+		setOpen(true);
+	}
 
-	public abstract void closeToolkit();
+	@Override
+	public void close() {
+		getPlayerInventory().setItem(getCloseButton().getPosition(), new ItemStack(Material.AIR));
+		getToolbar().close();
+		getMenu().close();
+		getPlayerInventory().setItem(getOpenButton().getPosition(), getOpenButton().getItem());
+		setOpen(false);
+	}
 
 	/**
 	 * Places items from one inventory into another
@@ -115,7 +137,7 @@ public abstract class Toolkit {
 
 	public Slot getSlot(String lore) {
 		for (Slot s : getSlots()) {
-			if (s.getLore().equals(lore)) {
+			if (s.getName().equals(lore)) {
 				return s;
 			}
 		}
@@ -143,7 +165,7 @@ public abstract class Toolkit {
 
 	public boolean contains(String lore) {
 		for (Slot s : getSlots()) {
-			if (s.getLore().equals(lore)) {
+			if (s.getName().equals(lore)) {
 				return true;
 			}
 		}
@@ -166,14 +188,6 @@ public abstract class Toolkit {
 			}
 		}
 		return false;
-	}
-
-	public Menu getMenu() {
-		return currentMenu;
-	}
-
-	public void setMenu(Menu currentMenu) {
-		this.currentMenu = currentMenu;
 	}
 
 }
