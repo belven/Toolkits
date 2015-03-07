@@ -12,6 +12,12 @@ import org.bukkit.inventory.PlayerInventory;
 import belven.toolkits.buttons.CloseButton;
 import belven.toolkits.buttons.OpenButton;
 
+/**
+ * This holds both a {@link Toolbar} and a {@link Menu}, that creates buttons within a players inventory, which other plugins can utilise
+ * 
+ * @author sam
+ * 
+ */
 public abstract class Toolkit extends Closeable {
 	private Menu currentMenu;
 	private Toolbar currentToolbar;
@@ -66,8 +72,13 @@ public abstract class Toolkit extends Closeable {
 
 	public List<Slot> getSlots() {
 		List<Slot> slots = new ArrayList<>();
-		slots.add(ob);
-		slots.add(cb);
+
+		if (!isOpen()) {
+			slots.add(ob);
+		} else {
+			slots.add(cb);
+		}
+
 		slots.addAll(getMenu().getSlots());
 		slots.addAll(getToolbar().getSlots());
 		return slots;
@@ -116,6 +127,9 @@ public abstract class Toolkit extends Closeable {
 		getToolbar().close();
 		getMenu().close();
 		getPlayerInventory().setItem(getOpenButton().getPosition(), getOpenButton().getItem());
+		playerInventory.clear();
+
+		// SetInventory(playerInventory, oldPlayerInventory);
 		setOpen(false);
 	}
 

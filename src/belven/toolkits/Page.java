@@ -33,6 +33,9 @@ public abstract class Page extends SlotContainer {
 		this(owner, new ArrayList<Slot>());
 	}
 
+	/* (non-Javadoc)
+	 * 
+	 * @see belven.toolkits.Closeable#open() */
 	@Override
 	public void open() {
 		for (Slot s : getSlots()) {
@@ -41,6 +44,9 @@ public abstract class Page extends SlotContainer {
 		setOpen(true);
 	}
 
+	/* (non-Javadoc)
+	 * 
+	 * @see belven.toolkits.Closeable#close() */
 	@Override
 	public void close() {
 		for (Slot s : getSlots()) {

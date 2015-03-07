@@ -6,6 +6,12 @@ import java.util.List;
 
 import org.bukkit.inventory.ItemStack;
 
+/**
+ * This is used to manage a collection of {@link Slot}
+ * 
+ * @author sam
+ * 
+ */
 public abstract class SlotContainer extends Closeable {
 	private List<Slot> slots = new ArrayList<Slot>();
 	public List<Integer> vailSlots = new ArrayList<Integer>();

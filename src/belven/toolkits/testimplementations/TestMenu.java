@@ -10,5 +10,4 @@ public class TestMenu extends Menu {
 		addPage(new TestPage1(toolkit));
 		addPage(new TestPage2(toolkit));
 	}
-
 }
