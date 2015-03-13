@@ -71,15 +71,9 @@ public abstract class SlotContainer extends Closeable {
 		}
 	}
 
-	public void removeSlot(String lore) {
-		if (contains(lore)) {
-			slots.remove(getSlot(lore));
-		}
-	}
-
-	public void clear() {
-		for (Slot es : slots) {
-			es.remove();
+	public void removeSlot(String name) {
+		if (contains(name)) {
+			slots.remove(getSlot(name));
 		}
 	}
 
@@ -103,9 +97,9 @@ public abstract class SlotContainer extends Closeable {
 		return false;
 	}
 
-	public boolean contains(String lore) {
+	public boolean contains(String name) {
 		for (Slot es : slots) {
-			if (es.getItem().getItemMeta().getLore().get(0) == lore) {
+			if (es.getItem().getItemMeta().getLore().get(0) == name) {
 				return true;
 			}
 		}
@@ -123,9 +117,9 @@ public abstract class SlotContainer extends Closeable {
 		return null;
 	}
 
-	public Slot getSlot(String lore) {
+	public Slot getSlot(String name) {
 		for (Slot es : slots) {
-			if (es.getName().equals(lore)) {
+			if (es.getName().equals(name)) {
 				return es;
 			}
 		}

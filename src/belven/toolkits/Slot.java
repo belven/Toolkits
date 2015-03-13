@@ -22,16 +22,18 @@ public abstract class Slot {
 		this.setItem(item);
 		this.setName(name);
 
-		SetItemLore(name, item);
-		// ItemMeta itemMeta = item.getItemMeta();
-		// itemMeta.setDisplayName("Button");
-		// item.setItemMeta(itemMeta);
-		// Bukkit.getServer().getLogger().info("Slot Created");
+		SetItemDisplayName(name, item);
 	}
 
-	public static void SetItemLore(String lore, ItemStack is) {
+	public static void SetItemDisplayName(String name, ItemStack is) {
+		ItemMeta itemMeta = is.getItemMeta();
+		itemMeta.setDisplayName(name);
+		is.setItemMeta(itemMeta);
+	}
+
+	public static void SetItemLore(String name, ItemStack is) {
 		ArrayList<String> l = new ArrayList<>();
-		l.add(lore);
+		l.add(name);
 		ItemMeta itemMeta = is.getItemMeta();
 		itemMeta.setLore(l);
 		is.setItemMeta(itemMeta);
@@ -43,10 +45,6 @@ public abstract class Slot {
 	 * @param p The player that pressed the button
 	 */
 	public abstract void pressed(Player p);
-
-	public void remove() {
-
-	}
 
 	/**
 	 * The position of the slot in the players inventory

@@ -97,34 +97,12 @@ public class PlayerListener implements Listener {
 
 		Slot s = plugin.getToolkit(p).getSlot(pos);
 
-		if (s instanceof OpenButton) {
-			s.pressed(p);
-		} else if (plugin.getToolkit(p).isOpen()) {
+		if (s instanceof OpenButton || plugin.getToolkit(p).isOpen()) {
 			s.pressed(p);
 		}
 
 		return true;
 	}
-
-	/* public boolean HandleButtonPress(Player p, ItemStack is) {
-	 * 
-	 * if (p == null) { return false; }
-	 * 
-	 * // Bukkit.getServer().getLogger().info(getDisplayName(is));
-	 * 
-	 * if (isItemAButton(is)) {
-	 * 
-	 * // Bukkit.getServer().getLogger().info(getItemLore(is));
-	 * 
-	 * if (plugin.getToolkit(p).contains(getItemLore(is))) {
-	 * 
-	 * plugin.getToolkit(p).getSlot(getItemLore(is)).pressed(p); // Bukkit.getServer().getLogger().info("Button pressed"); }
-	 * 
-	 * return true; }
-	 * 
-	 * return false; } */
-
-	/* private boolean isItemAButton(ItemStack is) { return is != null && is.getItemMeta() != null && getDisplayName(is).equals("Button"); } */
 
 	// @EventHandler
 	// public void onInventoryDragEvent(InventoryDragEvent event) {

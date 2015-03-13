@@ -12,6 +12,7 @@ public class TestPage1 extends Page {
 		super(owner);
 
 		addSlot(new TestMessageSlot(18, new ItemStack(Material.STONE), "Page Test 1"));
+		addColoumnSeperator(17);
+		addRowSeperator(21);
 	}
-
 }

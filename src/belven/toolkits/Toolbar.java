@@ -7,6 +7,10 @@ import java.util.List;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
+/**
+ * @author sam
+ * 
+ */
 public abstract class Toolbar extends SlotContainer {
 	public Toolkit toolkit;
 

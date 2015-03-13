@@ -3,7 +3,6 @@ package belven.toolkits;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
 /**
@@ -15,6 +14,7 @@ import org.bukkit.inventory.ItemStack;
  */
 public abstract class Menu extends Closeable {
 	private List<Page> pages = new ArrayList<>();
+
 	private Toolkit toolkit;
 	private int currentIndex = 0;
 
@@ -124,26 +124,6 @@ public abstract class Menu extends Closeable {
 	}
 
 	/**
-	 * Adds a column of items in the players inventory, to separate slots into groups
-	 * 
-	 * @param pos The column index to start at
-	 * @param type The type of item to create
-	 */
-	public void addColoumnSeperator(int pos, Material type) {
-
-	}
-
-	/**
-	 * Adds a row of items in the players inventory, to separate slots into groups
-	 * 
-	 * @param pos The row index to start at
-	 * @param type The type of item to create
-	 */
-	public void addRowSeperator(int pos, Material type) {
-
-	}
-
-	/**
 	 * Opens a page at the given index
 	 * 
 	 * @param index the index of hte page to go to
@@ -163,11 +143,11 @@ public abstract class Menu extends Closeable {
 	/**
 	 * Checks to see if the current {@link Page} has a {@link Slot} with a particular inventory position
 	 * 
-	 * @param lore The lore to check for a {@link Slot}
+	 * @param name The name to check for a {@link Slot}
 	 * @return If the {@link Page} contains the {@link Slot}
 	 */
-	public boolean contains(String lore) {
-		if (pages.get(currentIndex) != null && pages.get(currentIndex).contains(lore)) {
+	public boolean contains(String name) {
+		if (pages.get(currentIndex) != null && pages.get(currentIndex).contains(name)) {
 			return true;
 		}
 		return false;
@@ -228,12 +208,12 @@ public abstract class Menu extends Closeable {
 	/**
 	 * Looks through the current {@link Page} and gets the relevant {@link Slot}
 	 * 
-	 * @param lore The {@link Slot} lore to check for
+	 * @param name The {@link Slot} name to check for
 	 * @return The {@link Slot} found if any
 	 */
-	public Slot getSlot(String lore) {
-		if (contains(lore)) {
-			return pages.get(currentIndex).getSlot(lore);
+	public Slot getSlot(String name) {
+		if (contains(name)) {
+			return pages.get(currentIndex).getSlot(name);
 		}
 		return null;
 	}

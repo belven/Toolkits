@@ -112,6 +112,7 @@ public abstract class Toolkit extends Closeable {
 		this.oldPlayerInventory = oldPlayerInventory;
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public void open() {
 		getPlayerInventory().setItem(getOpenButton().getPosition(), new ItemStack(Material.AIR));
@@ -119,8 +120,10 @@ public abstract class Toolkit extends Closeable {
 		getMenu().open();
 		getPlayerInventory().setItem(getCloseButton().getPosition(), getCloseButton().getItem());
 		setOpen(true);
+		((Player) playerInventory.getHolder()).updateInventory();
 	}
 
+	@SuppressWarnings({ "deprecation" })
 	@Override
 	public void close() {
 		getPlayerInventory().setItem(getCloseButton().getPosition(), new ItemStack(Material.AIR));
@@ -131,6 +134,7 @@ public abstract class Toolkit extends Closeable {
 
 		// SetInventory(playerInventory, oldPlayerInventory);
 		setOpen(false);
+		((Player) playerInventory.getHolder()).updateInventory();
 	}
 
 	/**
